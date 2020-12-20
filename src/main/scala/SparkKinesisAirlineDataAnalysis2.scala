@@ -9,8 +9,8 @@ object SparkKinesisAirlineDataAnalysis2 extends App{
 val streamName = "mykinesisstream"
 val endPointURL = "https://kinesis.ap-south-1.amazonaws.com"
 val regionName = "ap-south-1"
-val AWS_ACCESS_KEY_ID = "AKIA43EB2YEDLHTRMUVM"
-val SECRET_ACCESS_ID = "O9AX4R85Fc42WrarjEbXYgVCcyDkBcQmT9vGo52x"
+val AWS_ACCESS_KEY_ID = ""
+val SECRET_ACCESS_ID = ""
 val checkpointInterval = 5
 import spark.implicits._   
   
