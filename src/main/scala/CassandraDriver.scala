@@ -14,6 +14,6 @@ class CassandraDriver extends SparkSessionBuilder {
        timestamp_dt date,
        primary key (fx_marker));
   */
-  val namespace = "test"
-  val foreachTableSink1 = "wordcount"
+  val namespace = "airline_analysis"
+  val foreachTableSink1 = "flights"
 }

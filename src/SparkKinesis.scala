@@ -1,13 +1,8 @@
 import org.apache.spark.sql.SparkSession
 import model.WordCount
-import org.apache.spark.SparkConf
-
-object SparkKinesis extends SparkSessionBuilder{
-def main(args: Array[String]) : Unit  = {
- // val spark = SparkSession.builder().appName("SparkKinesis").getOrCreate()
-val spark = buildCassandraSparkSession
-  
-spark.sparkContext.setLogLevel("ERROR")
+object SparkKinesis extends App{
+  val spark = SparkSession.builder().appName("SparkKinesis").getOrCreate()
+  spark.sparkContext.setLogLevel("ERROR")
   
   
  val streamName = "mykinesisstream"
@@ -28,22 +23,16 @@ val checkpointInterval = 5
         .load.selectExpr("CAST(data AS STRING)").as[(String)]
   
   val wordCounts = lines.flatMap(_.split(" ")).groupBy("value").count().as[WordCount]
-wordCounts.printSchema()  
+  wordCounts.printSchema()
   
-val query = wordCounts.writeStream
-      .outputMode("complete")
-      .format("console")
-      //.option("checkpointLocation", checkpointLocation)
-      .start()  
-    val cassQuery = wordCounts.writeStream.outputMode("complete").foreach(new CassandraForeachWriter[WordCount] {
+ /*
+    val cassQuery = wordCounts.writeStream.foreach(new CassandraForeachWriter[WordCount] {
                            
                           }
            ).start()       
         
- 
- query.awaitTermination()        
+*/
         
-
-}
-     
+        
+        
 }
